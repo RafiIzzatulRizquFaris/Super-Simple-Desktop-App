@@ -10,7 +10,7 @@ public class MyFirstForm {
     private JComboBox comboBox1;
 
     public MyFirstForm() {
-        String[] options = { "Option1", "Option2", "Option3", "Option4", "Option15" };
+        String[] options = { "+", "-", "*", "/" };
         comboBox1.setModel(new DefaultComboBoxModel(options));
         caalculateButton.addMouseListener(new MouseAdapter() {
             @Override
@@ -25,6 +25,8 @@ public class MyFirstForm {
                     total = firstField - secondField;
                 }else if (selectedItem == 2){
                     total = firstField * secondField;
+                }else if (selectedItem == 3){
+                    total = firstField / secondField;
                 }
                 textArea1.setText(String.valueOf(total));
             }
