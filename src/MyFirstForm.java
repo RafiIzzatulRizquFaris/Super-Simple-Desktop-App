@@ -11,7 +11,7 @@ public class MyFirstForm {
 
     public MyFirstForm() {
         String[] options = { "Option1", "Option2", "Option3", "Option4", "Option15" };
-        comboBox1 = new JComboBox(options);
+        comboBox1.setModel(new DefaultComboBoxModel(options));
         caalculateButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
