@@ -10,25 +10,44 @@ public class MyFirstForm {
     private JComboBox comboBox1;
 
     public MyFirstForm() {
-        String[] options = { "+", "-", "*", "/" };
+        String[] options = { "+", "-", "*", "/", "Pythagoras" };
         comboBox1.setModel(new DefaultComboBoxModel(options));
         caalculateButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                int total = 0;
-                int firstField = Integer.parseInt(textField1.getText());
-                int secondField = Integer.parseInt(textField2.getText());
-                int selectedItem = comboBox1.getSelectedIndex();
-                if (selectedItem == 0){
-                    total = firstField + secondField;
-                }else if (selectedItem == 1){
-                    total = firstField - secondField;
-                }else if (selectedItem == 2){
-                    total = firstField * secondField;
-                }else if (selectedItem == 3){
-                    total = firstField / secondField;
+                if (textField1.getText().isEmpty() || textField2.getText().isEmpty()){
+                    textArea1.setText("Your TextField must be filled in");
+                }else if (textField1.getText().isEmpty() && textField2.getText().isEmpty()){
+                    textArea1.setText("Your TextField must be filled in");
+                }else {
+                    int total = 0;
+                    try {
+                        int firstField = Integer.parseInt(textField1.getText());
+                        int secondField = Integer.parseInt(textField2.getText());
+                        int selectedItem = comboBox1.getSelectedIndex();
+                        switch (selectedItem){
+                            case 0:
+                                total = firstField + secondField;
+                                break;
+                            case 1:
+                                total = firstField - secondField;
+                                break;
+                            case 2:
+                                total = firstField * secondField;
+                                break;
+                            case 3:
+                                total = firstField / secondField;
+                                break;
+                            case 4:
+                                double myMath = Math.sqrt(Math.pow(firstField, 2) + Math.pow(secondField, 2));
+                                total = (int) myMath;
+                                break;
+                        }
+                        textArea1.setText(String.valueOf(total));
+                    }catch (Exception ex){
+                        System.out.println(ex.toString());
+                    }
                 }
-                textArea1.setText(String.valueOf(total));
             }
         });
     }
